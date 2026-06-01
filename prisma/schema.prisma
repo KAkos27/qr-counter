@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Event {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  isActive  Boolean  @default(false)
+  scans     Scan[]
+}
+
+model Scan {
+  id        String   @id @default(cuid())
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id])
+  scannedAt DateTime @default(now())
+  userAgent String?
+  ip        String?
+}
