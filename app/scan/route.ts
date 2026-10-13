@@ -5,10 +5,17 @@ import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
-export async function GET(request: NextRequest) {
-  const activeEvent = await prisma.event.findFirst({
-    where: { isActive: true },
-  });
+export async function GET(_request: NextRequest) {
+  const [activeEvent, settings] = await Promise.all([
+    prisma.event.findFirst({ where: { isActive: true } }),
+    prisma.redirectSettings.findUnique({ where: { id: 1 } }),
+  ]);
+
+  if (!settings) {
+    return new Response("A QR átirányítási URL még nincs beállítva.", {
+      status: 503,
+    });
+  }
 
   if (activeEvent) {
     const headersList = await headers();
@@ -27,5 +34,5 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  redirect(process.env.INSTAGRAM_URL!);
+  redirect(settings.redirectUrl);
 }

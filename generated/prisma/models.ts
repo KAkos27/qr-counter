@@ -10,4 +10,5 @@
  */
 export type * from './models/Event'
 export type * from './models/Scan'
+export type * from './models/RedirectSettings'
 export type * from './commonInputTypes'

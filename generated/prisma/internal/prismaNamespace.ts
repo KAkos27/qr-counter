@@ -385,7 +385,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Event: 'Event',
-  Scan: 'Scan'
+  Scan: 'Scan',
+  RedirectSettings: 'RedirectSettings'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -401,7 +402,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "event" | "scan"
+    modelProps: "event" | "scan" | "redirectSettings"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -553,6 +554,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    RedirectSettings: {
+      payload: Prisma.$RedirectSettingsPayload<ExtArgs>
+      fields: Prisma.RedirectSettingsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RedirectSettingsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RedirectSettingsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RedirectSettingsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RedirectSettingsPayload>
+        }
+        findFirst: {
+          args: Prisma.RedirectSettingsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RedirectSettingsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RedirectSettingsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RedirectSettingsPayload>
+        }
+        findMany: {
+          args: Prisma.RedirectSettingsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RedirectSettingsPayload>[]
+        }
+        create: {
+          args: Prisma.RedirectSettingsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RedirectSettingsPayload>
+        }
+        createMany: {
+          args: Prisma.RedirectSettingsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RedirectSettingsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RedirectSettingsPayload>[]
+        }
+        delete: {
+          args: Prisma.RedirectSettingsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RedirectSettingsPayload>
+        }
+        update: {
+          args: Prisma.RedirectSettingsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RedirectSettingsPayload>
+        }
+        deleteMany: {
+          args: Prisma.RedirectSettingsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RedirectSettingsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RedirectSettingsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RedirectSettingsPayload>[]
+        }
+        upsert: {
+          args: Prisma.RedirectSettingsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RedirectSettingsPayload>
+        }
+        aggregate: {
+          args: Prisma.RedirectSettingsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRedirectSettings>
+        }
+        groupBy: {
+          args: Prisma.RedirectSettingsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RedirectSettingsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RedirectSettingsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RedirectSettingsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -611,6 +686,14 @@ export const ScanScalarFieldEnum = {
 } as const
 
 export type ScanScalarFieldEnum = (typeof ScanScalarFieldEnum)[keyof typeof ScanScalarFieldEnum]
+
+
+export const RedirectSettingsScalarFieldEnum = {
+  id: 'id',
+  redirectUrl: 'redirectUrl'
+} as const
+
+export type RedirectSettingsScalarFieldEnum = (typeof RedirectSettingsScalarFieldEnum)[keyof typeof RedirectSettingsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -689,6 +772,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -803,6 +900,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   event?: Prisma.EventOmit
   scan?: Prisma.ScanOmit
+  redirectSettings?: Prisma.RedirectSettingsOmit
 }
 
 /* Types for Logging */

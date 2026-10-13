@@ -2,16 +2,20 @@ import { prisma } from "@/lib/prisma";
 import { DeleteEventButton } from "./DeleteEventButton";
 import { CreateEventForm } from "./CreateEventForm";
 import { ActivateEventButton } from "./ActivateEventButton";
+import { RedirectUrlForm } from "./RedirectUrlForm";
 
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  const events = await prisma.event.findMany({
-    orderBy: { createdAt: "desc" },
-    include: {
-      _count: { select: { scans: true } },
-    },
-  });
+  const [events, settings] = await Promise.all([
+    prisma.event.findMany({
+      orderBy: { createdAt: "desc" },
+      include: {
+        _count: { select: { scans: true } },
+      },
+    }),
+    prisma.redirectSettings.findUnique({ where: { id: 1 } }),
+  ]);
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8 font-sans">
@@ -25,6 +29,13 @@ export default async function DashboardPage() {
             /scan
           </code>
         </p>
+
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 md:p-6 mb-6">
+          <h2 className="text-base font-semibold text-gray-800 mb-3">
+            QR átirányítási URL
+          </h2>
+          <RedirectUrlForm initialUrl={settings?.redirectUrl ?? ""} />
+        </div>
 
         {/* Esemény létrehozása */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 md:p-6 mb-6">

@@ -52,7 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Event: 'Event',
-  Scan: 'Scan'
+  Scan: 'Scan',
+  RedirectSettings: 'RedirectSettings'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -90,6 +91,14 @@ export const ScanScalarFieldEnum = {
 } as const
 
 export type ScanScalarFieldEnum = (typeof ScanScalarFieldEnum)[keyof typeof ScanScalarFieldEnum]
+
+
+export const RedirectSettingsScalarFieldEnum = {
+  id: 'id',
+  redirectUrl: 'redirectUrl'
+} as const
+
+export type RedirectSettingsScalarFieldEnum = (typeof RedirectSettingsScalarFieldEnum)[keyof typeof RedirectSettingsScalarFieldEnum]
 
 
 export const SortOrder = {

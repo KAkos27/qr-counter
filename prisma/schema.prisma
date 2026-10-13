@@ -23,3 +23,8 @@ model Scan {
   userAgent String?
   ip        String?
 }
+
+model RedirectSettings {
+  id          Int    @id @default(1)
+  redirectUrl String
+}

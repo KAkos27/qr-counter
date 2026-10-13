@@ -30,5 +30,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard', '/api/events', '/api/events/:path*'],
+  matcher: ['/dashboard', '/api/events', '/api/events/:path*', '/api/settings'],
 }

@@ -51,3 +51,8 @@ export type Event = Prisma.EventModel
  * 
  */
 export type Scan = Prisma.ScanModel
+/**
+ * Model RedirectSettings
+ * 
+ */
+export type RedirectSettings = Prisma.RedirectSettingsModel
